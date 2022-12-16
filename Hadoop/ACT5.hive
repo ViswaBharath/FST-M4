@@ -1,0 +1,25 @@
+show databases;
+create database office;
+use office;
+
+CREATE TABLE employee
+ (id INT, name STRING, dept STRING, yoj INT, salary INT)
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+  TBLPROPERTIES ("skip.header.line.count"="1");
+
+ DESCRIBE employee;
+ LOAD DATA LOCAL INPATH
+     '/root/EmpData.csv'
+     INTO TABLE employee;
+	 SELECT * FROM employee;
+ SELECT COUNT(*) FROM employee;
+
+#Exports to HDFS directory
+ INSERT OVERWRITE DIRECTORY '/user/viswa/Act5_output'
+     ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+     SELECT * FROM employee;
+
+#Exports to LOCAL directory
+ INSERT OVERWRITE LOCAL DIRECTORY '/root/Act5_output' 
+     ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+     SELECT * FROM employee;    
