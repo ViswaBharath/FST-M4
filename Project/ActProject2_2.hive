@@ -1,0 +1,7 @@
+SELECT  COUNT(*)  from episodeIV WHERE INSTR(line, 'Luke') > 0;
+INSERT OVERWRITE DIRECTORY '/user/viswa/output/episodeiv_results2'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM episodeiv;
+INSERT OVERWRITE LOCAL DIRECTORY '/root/episodeiv_results2' 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM episodeiv;
